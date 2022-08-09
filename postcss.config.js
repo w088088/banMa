@@ -1,0 +1,19 @@
+
+// postcss.config.js
+module.exports = {
+    plugins: {
+        // postcss-pxtorem 插件的版本需要 >= 5.0.0
+        'postcss-pxtorem': {
+            rootValue({ file }) {
+                // 判断是否是vant的文件 如果是就使用 37.5为根节点字体大小
+                // 否则使用75 因为vant使用的设计标准为375 但是市场现在的主流设置尺寸是750
+                return file.indexOf('vant') !== -1 ? 37.5 : 75;
+            },
+            // 配置哪些文件中的尺寸需要转化为rem *表示所有的都要转化
+            // *表示所有，所有的都参与计算     // '!font-size'字号
+            propList: ['*', '!font-size', '!border'],
+
+
+        },
+    },
+};
